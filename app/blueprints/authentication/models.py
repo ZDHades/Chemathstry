@@ -11,11 +11,13 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     created_on = db.Column(db.DateTime, default=datetime.utcnow)
-    Stoich_queries = db.relationship('app.blueprints.stoichiometry.models.Stoich_Queries', backref='user', lazy=True)
+    stoich_queries = db.relationship('StoichQueries', backref='user', lazy=True)
 
+    # method to secure password
     def hash_pass(self, original_password):
         self.password = generate_password_hash(original_password)
 
+    # method to verify password against databases secure password
     def check_password(self, original_password):
         return check_password_hash(self.password, original_password)
 

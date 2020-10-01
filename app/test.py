@@ -8,3 +8,4 @@ print(solution)
 reactants = 'NH4ClO4, Al'
 products = 'Al2O3, HCl, H2O, N2'
 
+#Crud for all routes

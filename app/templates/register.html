@@ -33,6 +33,9 @@
             <div class="form-group">
                 {{ form.confirm_password(class='form-control', placeholder='Confirm Password') }}
             </div>
+            <div class="form-group">
+                {{ form.accept_tos(class='form-check-label')}} I agree to the Terms of Service
+            </div>
             {{ form.submit(class='btn btn-outline-primary btn-block') }}
         </form>
     </div>
