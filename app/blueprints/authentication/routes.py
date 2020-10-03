@@ -53,7 +53,7 @@ def login():
         # check if the info is correct
         if user is None or not user.check_password(request.form.get('password')):
             flash("You have entered incorrect details, please try again", 'danger')
-            return redirect(url_for('login'))
+            return redirect(url_for('authentication.login'))
         login_user(user)
         flash("You have successfully logged in!", 'success')
         return redirect(url_for('main.index'))

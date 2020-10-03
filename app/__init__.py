@@ -32,4 +32,7 @@ def create_app(config_class=Config):
         from app.blueprints.stoichiometry import bp as stoichiometry
         app.register_blueprint(stoichiometry)
 
+        from app.blueprints.api import bp as api
+        app.register_blueprint(api)
+        
     return app
