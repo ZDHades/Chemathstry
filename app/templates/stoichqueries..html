@@ -9,18 +9,16 @@
 <div class="row">
     <div class="containter-col-md-12">
         <ul class="list-group">
-            {% if current_user.is_authenticated %}
             {% for q in queries %}
             <li class="list-group-item">
                {{ q.q_reactants = q.q_products balances out to q.s_reactants = q.s_products }}
                 <cite>
-                    &mdash; @ {{ moment(p.created_on).fromNow() }}
+                    &mdash; @ {{ moment(q.created_on).fromNow() }}
                 </cite>
             </li>
             {% endfor %}
             {% else %}
             <h3>All queries shown!</h3>
-            {% endif %}
         </ul>
     </div>
 </div>
