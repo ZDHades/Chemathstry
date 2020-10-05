@@ -24,6 +24,9 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f"<user: {self.email}>"
 
+    # def my_queries(self):
+    #     return self.my_queries
+
 @login.user_loader
 def login_user(id):
     return User.query.get(int(id))

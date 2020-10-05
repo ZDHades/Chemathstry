@@ -11,13 +11,12 @@
         <ul class="list-group">
             {% for q in queries %}
             <li class="list-group-item">
-               {{ q.q_reactants = q.q_products balances out to q.s_reactants = q.s_products }}
+               {{ q.q_reactants }} = {{ q.q_products }} balances out to {{q.s_reactants}} = {{ q.s_products }}
                 <cite>
                     &mdash; @ {{ moment(q.created_on).fromNow() }}
                 </cite>
             </li>
             {% endfor %}
-            {% else %}
             <h3>All queries shown!</h3>
         </ul>
     </div>

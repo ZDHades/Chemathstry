@@ -20,8 +20,8 @@ def do_stoichiometry():
     if form.validate_on_submit():
         # collect the data from the form into a dictionary
         data = {
-            'reactants' : request.form.get('reactants').split(','),
-            'products' : request.form.get('products').split(',')
+            'reactants' : [_.strip() for _ in request.form.get('reactants').split(',')],
+            'products' : [_.strip() for _ in request.form.get('products').split(',')]
         }
 
         # plug in the info to the balance_stoichiometry method
@@ -37,7 +37,7 @@ def do_stoichiometry():
                 s_prod = str(prod)[13:-2]
                 # create an instance of the StoichQuery table
                 s = StoichQueries(q_reactants = data['reactants'], q_products=data['products'], s_products=s_prod, s_reactants=s_reac, user_id=current_user.id)
-
+                print(s.to_dict())
                 # save the instance to the database
                 db.session.add(s)
                 db.session.commit()
@@ -60,8 +60,9 @@ def do_stoichiometry():
 @login_required
 def stoich_queries():
     if current_user.is_authenticated:
-        my_queries = StoichQueries.my_queries().all()
+        my_queries = current_user.stoich_queries
     else:
         my_queries = []
+    print(my_queries)
     return render_template('stoichqueries.html', queries=my_queries)
 
