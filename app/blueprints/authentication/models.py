@@ -12,6 +12,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String)
     created_on = db.Column(db.DateTime, default=datetime.utcnow)
     stoich_queries = db.relationship('StoichQueries', backref='user', lazy=True)
+    mm_queries = db.relationship('MMQueries', backref='user', lazy=True)
 
     # method to secure password
     def hash_pass(self, original_password):

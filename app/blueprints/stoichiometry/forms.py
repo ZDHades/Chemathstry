@@ -6,6 +6,3 @@ class two_part_reaction(FlaskForm):
     reactants = StringField()
     products = StringField()
     submit = SubmitField('Submit Query')
-
-    # placeholder for reactants = NH4ClO4, Al
-    # placeholder for products = Al2O3, HCl, H2O, N2

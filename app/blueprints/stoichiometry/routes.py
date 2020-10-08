@@ -5,6 +5,8 @@ from flask_login import current_user, login_required
 from .models import StoichQueries
 from flask import flash, redirect, render_template, url_for, request
 from app import db
+from sqlalchemy import desc
+
 
 # route to balance an equation
 @stoichiometry.route('/', methods=['GET', 'POST'])
@@ -37,7 +39,6 @@ def do_stoichiometry():
                 s_prod = str(prod)[13:-2]
                 # create an instance of the StoichQuery table
                 s = StoichQueries(q_reactants = data['reactants'], q_products=data['products'], s_products=s_prod, s_reactants=s_reac, user_id=current_user.id)
-                print(s.to_dict())
                 # save the instance to the database
                 db.session.add(s)
                 db.session.commit()
@@ -51,7 +52,7 @@ def do_stoichiometry():
 
     # send the data to the HTML page
     content = {
-        'Query' : StoichQueries.query.filter_by(user_id=current_user.id).first(),
+        'Query' : StoichQueries.query.filter_by(user_id=current_user.id).order_by(desc('created_on')).first(),
         'form' : form
     }
     return render_template('stoichiometry.html', **content)

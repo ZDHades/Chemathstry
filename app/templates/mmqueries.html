@@ -1,0 +1,24 @@
+{% extends 'layout.html'%}
+{% set active_page='MMQueries'-%}
+
+{% block title %}
+{{ super() }} | My Queries
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="containter-col-md-12">
+        <ul class="list-group">
+            {% for q in queries %}
+            <li class="list-group-item">
+                Molar mass of {{ q.q_MM }} = {{ q.s_MM }}
+                <cite>
+                    &mdash; @ {{ moment(q.created_on).fromNow() }}
+                </cite>
+            </li>
+            {% endfor %}
+            <h3>All queries shown!</h3>
+        </ul>
+    </div>
+</div>
+{% endblock %}

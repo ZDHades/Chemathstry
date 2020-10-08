@@ -31,4 +31,9 @@ print(solution)
 
 # # Learn how backref works
 
+
 # print(f'{str(reac)[13:-2]}')
+
+test = input("test")
+yeet = Substance.from_formula(test)
+print(yeet.mass)

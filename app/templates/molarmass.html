@@ -1,0 +1,27 @@
+{% extends 'layout.html'%}
+{% set active_page='stoichiometry' -%}
+
+
+{% block title %}
+{{ super() }} | MolarMass
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class='col-md-6'>
+        <form action="{{ url_for('molarmass.get_MM') }}" method='POST' novalidate>
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                Your molecule here in this format - AL2O3
+                {{ form.get_MM(class='form-control', placeholder="Query") }}
+            </div>
+            </div>
+            {{ form.submit(class='btn btn-outline-primary btn-block') }}
+        </form>
+    </div>
+</div>
+
+{% if Query %} {{Query}} {% endif %}
+<a href="{{ url_for('molarmass.mm_queries') }}">Want to see all of your previous queries and their
+    solutions?</a>
+{% endblock %}

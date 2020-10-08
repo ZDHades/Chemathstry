@@ -27,7 +27,3 @@ class StoichQueries(db.Model):
 
     def __repr__(self):
         return f'Solution: {self.s_reactants} = {self.s_products}' 
-
-    # def my_queries(self):
-    #     my_queries = self.query.filter_by(user_id=self.user_id)
-    #     return my_queries
