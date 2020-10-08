@@ -21,4 +21,4 @@ class MMQueries(db.Model):
         return data
     
     def __repr__(self):
-        return f'{s_MM} = {q_MM}'
+        return f'{self.s_MM} = {self.q_MM}'

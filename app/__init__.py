@@ -38,4 +38,7 @@ def create_app(config_class=Config):
         from app.blueprints.molarmass import bp as molarmass
         app.register_blueprint(molarmass)
         
+        from app.blueprints.massfractions import bp as massfractions
+        app.register_blueprint(massfractions)
+
     return app

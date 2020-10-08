@@ -19,7 +19,7 @@ def get_MM():
 
     if form.validate_on_submit():
         # collect the data from the form
-        query = request.form.get('q_MM')
+        query = str(request.form.get('q_MM'))
 
         # plug it into the formula
 
@@ -34,18 +34,20 @@ def get_MM():
                 db.session.add(m)
                 db.session.commit()
                 checked=True
-            except ParseException:
+            # error handeling
+            except Exception:
                 flash("There was an error in query, solution cannot be determined. Please try again", 'danger')
-                return redirect(url_for('molarmass.getMM'))
+                return redirect(url_for('molarmass.get_MM'))
         flash("Query Submitted!", 'success')
         return redirect(url_for('molarmass.get_MM'))
-
+    # sending content to the frontend
     content = {
         'Query' : MMQueries.query.filter_by(user_id=current_user.id).order_by(desc('created_on')).first(),
         'form' : form
     }
     return render_template('molarmass.html', **content)
 
+# route to get all queries by user
 @molarmass.route('/mmqueries')
 @login_required
 def mm_queries():
